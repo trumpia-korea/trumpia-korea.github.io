@@ -63,5 +63,3 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
-
-repository: trumpia-korea/trumpia-korea.github.io
