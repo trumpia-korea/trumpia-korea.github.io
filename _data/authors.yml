@@ -1,0 +1,8 @@
+kyedon:
+  name        : "Kyedon Kang"
+  bio         : "DevOps Engineer"
+  avatar      : "/assets/images/authors/kyedon.jpg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:kyedon.kang@mytrum.com"

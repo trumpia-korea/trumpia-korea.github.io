@@ -1,0 +1,67 @@
+name: Trumpia
+title: Trumpia Tech Blog
+email: tech@mytrum.com
+description: >-
+  Trumpia Tech Blog
+minimal_mistakes_skin: default
+search: true
+
+markdown: kramdown
+remote_theme: mmistakes/minimal-mistakes
+permalink: /:categories/:title/
+paginate: 5
+paginate_path: /page:num/
+timezone: Asia/Seoul
+
+include:
+  - _pages
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+author:
+  name   : "Trumpia Korea"
+  avatar : "/assets/images/logo.png"
+  bio    : "Multi channel marketing automation solution"
+  links:
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "http://trumpia.co.kr"
+
+footer:
+  links:
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "http://trumpia.co.kr"
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+
+repository: trumpia-korea/trumpia-korea.github.io
