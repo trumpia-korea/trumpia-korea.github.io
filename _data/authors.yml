@@ -6,3 +6,12 @@ kyedon:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:kyedon.kang@mytrum.com"
+
+sungsoo:
+  name        : "sungsoo  kim"
+  bio         : "DevOps Engineer"
+  avatar      : "/assets/images/authors/sungsoo.jpg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:sskim@mytrum.com"
