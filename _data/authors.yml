@@ -15,3 +15,12 @@ sungsoo:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:sskim@mytrum.com"
+
+joseph:
+  name        : "Joseph  Yoo"
+  bio         : "DevOps Engineer"
+  avatar      : "/assets/images/authors/joseph.jpg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:joseph.yoo@mytrum.com"
