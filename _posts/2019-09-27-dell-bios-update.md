@@ -1,12 +1,12 @@
 ---
 title: "Dell Bios update 방법"
 categories:
-  - bios
+  - Manual
 tags:
   - Infra
-  - idrac
-  - dell
-
+  - IDRAC
+  - Dell
+  - BIOS
 author: sungsoo
 ---
 
