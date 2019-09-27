@@ -66,3 +66,8 @@ tag_archive:
   type: liquid
   path: /tags/
 repository: trumpia-korea/trumpia-korea.github.io
+
+comments:
+  provider: "disqus"
+  disqus:
+    shortname: "trumpia-tech"
