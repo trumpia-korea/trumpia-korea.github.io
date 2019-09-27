@@ -28,4 +28,3 @@ Dell Server를 사용하다보면 원격으로 바이오스를 업데이트를 �
 wget -q -O - http://linux.dell.com/repo/hardware/dsu/bootstrap.cgi | bash
 ```
 
-![bios1](D:\kayain74\Pictures\bios\bios1.png)
