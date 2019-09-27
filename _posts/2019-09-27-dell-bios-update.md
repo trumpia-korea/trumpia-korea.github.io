@@ -20,7 +20,7 @@ author: sungsoo
 
 Dell Server를 사용하다보면 원격으로 바이오스를 업데이트를 해야 할 필요성이 있다. 바이오스 업데이트는 다양한 방법이 있지만 서버를 운영하다보면 console로 접근하는 방법을 선호하게 된다.
 
-다음은 일반적으로 사용하는 dell bios 업데이트 방법입니다. 아
+다음은 일반적으로 사용하는 dell bios 업데이트 방법입니다.
 
 먼저 repository를 설정합니다. 
 
@@ -54,7 +54,7 @@ dsu -i
 다음과 같이 버전에 대한 정보가 나옵니다. 
 
 
-```bash
+```console
 [root@localhost ~]# dsu --inventory
 DELL EMC System Update 1.7.0
 Copyright (C) 2014 DELL EMC Proprietary.
@@ -119,7 +119,7 @@ dsu
 
 아래와 같이 현재 버전과 업데이트 버전에 대한 정보가 나옵니다. 
 
-```bash
+```console
 [root@localhost ~]# dsu
 DELL EMC System Update 1.7.0
 Copyright (C) 2014 DELL EMC Proprietary.
@@ -179,7 +179,7 @@ Enter your choice :
 
 만약 아래와 같이 에러가 나오면 key를 변경해 줘야 합니다.
 
-```bash
+```console
 [root@localhost ~]# dsu --inventory
 DELL EMC System Update 1.7.0
 Copyright (C) 2014 DELL EMC Proprietary.
@@ -199,7 +199,7 @@ curl -s https://linux.dell.com/repo/hardware/dsu/copygpgkeys.sh | bash
 
 아래는 실행 결과 입니다. 
 
-```bash
+```console
 [root@localhost ~]# curl -s https://linux.dell.com/repo/hardware/dsu/copygpgkeys.sh | bash
 0x756ba70b1019ced6.asc: Downloading GPG key.
                       : Copying GPG key to /usr/libexec/dell_dup/.
