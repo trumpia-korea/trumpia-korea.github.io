@@ -1,3 +1,14 @@
+---
+title: "Post: Install Kubernetes on CentOS 7"
+categories:
+  - Infra
+tags:
+  - Infra
+  - Kubernetes
+
+author: joseph
+---
+
 # Install Kubernetes on CentOS 7
 > 작성자: 유요셉
 > 
@@ -125,11 +136,11 @@
 ```console
 [root@k8s-master ~]# vi /etc/hosts
 ```
-> 192.168.2.134	k8s-master
+> 192.168.0.111	k8s-master
 > 
-> 192.168.2.135	worker-node1
+> 192.168.0.112	worker-node1
 > 
-> 192.168.2.144	worker-node2
+> 192.168.0.113	worker-node2
 
 
 
@@ -137,7 +148,7 @@
 ```console
 [root@k8s-master ~]# kubeadm init
 ```
-![kubeadm init result](images/js-virt01_005.jpg "kubeadm init result")
+![kubeadm init result](images/2019-09-27-Install_Kubernetes_on_CentOS_7/js-virt01_005.jpg "kubeadm init result")
 
 > set cluster
 > 
@@ -169,7 +180,7 @@ To make the cluster status ready and kube-dns status running, deploy the pod net
 [root@k8s-master ~]# export kubever=$(kubectl version | base64 | tr -d '\n')
 [root@k8s-master ~]# kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
 ```
-![deploy network](images/js-virt01_007.jpg "deploy notwork")
+![deploy network](images/2019-09-27-Install_Kubernetes_on_CentOS_7/js-virt01_007.jpg "deploy notwork")
 
 
 
@@ -182,13 +193,13 @@ To make the cluster status ready and kube-dns status running, deploy the pod net
 > enter command that Master Initialized result.
 > 
 ```console
-[root@worker ~]# kubeadm join 192.168.2.134:6443 --token wu52z8.q5gbxs4f0382de3m --discovery-token-ca-cert-hash sha256:d498fc1051286da4fc407ec47722de4db839a217730bc67c09df82aad92f1c50
+[root@worker ~]# kubeadm join 192.168.0.123:6443 --token wu52z8.q5gbxs4f0382de3m --discovery-token-ca-cert-hash sha256:d498fc1051286da4fc407ec47722de4db839a217730bc67c09df82aad92f1c50
 ```
 > kubeadm join result
 
-![kubeadm_join_result](images/js-virt03_008.jpg "kubeadm join result")
+![kubeadm_join_result](images/2019-09-27-Install_Kubernetes_on_CentOS_7/js-virt03_008.jpg "kubeadm join result")
 
 > check on Master-side
 
-![kubectl_get_nodes_result](images/kubectl_getnodes_pods_result.jpg "kubectl_get_nodes_result")
+![kubectl_get_nodes_result](images/2019-09-27-Install_Kubernetes_on_CentOS_7/kubectl_getnodes_pods_result.jpg "kubectl_get_nodes_result")
 
