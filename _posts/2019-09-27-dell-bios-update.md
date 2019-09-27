@@ -1,5 +1,5 @@
 ---
-title: "Post: Dell Bios update 방법"
+title: "Dell Bios update 방법"
 categories:
   - bios
 tags:
