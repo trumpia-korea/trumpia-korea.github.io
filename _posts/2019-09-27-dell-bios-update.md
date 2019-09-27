@@ -1,14 +1,13 @@
 ---
-title: "Post: MegaRAID Disk Fault"
+title: "Post: Dell Bios update 방법"
 categories:
-  - Fault
+  - bios
 tags:
   - Infra
-  - Raid Controller
-  - Megaraid
-  - Megacli
-  - Baremetal
-author: kyedon
+  - idrac
+  - dell
+
+author: sungsoo
 ---
 
 ***
