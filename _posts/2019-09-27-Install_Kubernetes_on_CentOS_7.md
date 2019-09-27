@@ -10,6 +10,7 @@ author: joseph
 ---
 
 # Install Kubernetes on CentOS 7
+
 > 작성자: 유요셉
 > 
 > 최종수정일: 2018-12-28
@@ -148,7 +149,7 @@ author: joseph
 ```console
 [root@k8s-master ~]# kubeadm init
 ```
-![kubeadm init result](images/2019-09-27-Install_Kubernetes_on_CentOS_7/js-virt01_005.jpg "kubeadm init result")
+![kubeadm init result](/images/2019-09-27-Install_Kubernetes_on_CentOS_7/js-virt01_005.jpg "kubeadm init result")
 
 > set cluster
 > 
@@ -180,7 +181,7 @@ To make the cluster status ready and kube-dns status running, deploy the pod net
 [root@k8s-master ~]# export kubever=$(kubectl version | base64 | tr -d '\n')
 [root@k8s-master ~]# kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
 ```
-![deploy network](images/2019-09-27-Install_Kubernetes_on_CentOS_7/js-virt01_007.jpg "deploy notwork")
+![deploy network](/images/2019-09-27-Install_Kubernetes_on_CentOS_7/js-virt01_007.jpg "deploy notwork")
 
 
 
@@ -197,9 +198,9 @@ To make the cluster status ready and kube-dns status running, deploy the pod net
 ```
 > kubeadm join result
 
-![kubeadm_join_result](images/2019-09-27-Install_Kubernetes_on_CentOS_7/js-virt03_008.jpg "kubeadm join result")
+![kubeadm_join_result](/images/2019-09-27-Install_Kubernetes_on_CentOS_7/js-virt03_008.jpg "kubeadm join result")
 
 > check on Master-side
 
-![kubectl_get_nodes_result](images/2019-09-27-Install_Kubernetes_on_CentOS_7/kubectl_getnodes_pods_result.jpg "kubectl_get_nodes_result")
+![kubectl_get_nodes_result](/images/2019-09-27-Install_Kubernetes_on_CentOS_7/kubectl_getnodes_pods_result.jpg "kubectl_get_nodes_result")
 
