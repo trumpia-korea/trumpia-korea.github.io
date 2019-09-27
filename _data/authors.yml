@@ -1,24 +1,24 @@
-kyedon:
-  name        : "Kyedon Kang"
-  bio         : "DevOps Engineer"
-  avatar      : "/assets/images/authors/kyedon.jpg"
-  links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:kyedon.kang@mytrum.com"
-
 sungsoo:
-  name        : "sungsoo  kim"
-  bio         : "DevOps Engineer"
+  name        : "Sungsoo  Kim"
+  bio         : "Infra/DevOps Team Leader"
   avatar      : "/assets/images/authors/sungsoo.jpg"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:sskim@mytrum.com"
 
+kyedon:
+  name        : "Kyedon Kang"
+  bio         : "Infra/DevOps Engineer"
+  avatar      : "/assets/images/authors/kyedon.jpg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:kyedon.kang@mytrum.com"
+
 joseph:
   name        : "Joseph  Yoo"
-  bio         : "DevOps Engineer"
+  bio         : "Infra/DevOps Engineer"
   avatar      : "/assets/images/authors/joseph.jpg"
   links:
     - label: "Email"
