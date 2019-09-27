@@ -27,3 +27,28 @@ Dell Server를 사용하다보면 원격으로 바이오스를 업데이트를 �
 ```bash
 wget -q -O - http://linux.dell.com/repo/hardware/dsu/bootstrap.cgi | bash
 ```
+공개 키를 설치하기 전에는 동의가 필요합니다. 
+
+
+
+저장소를 사용하여 dsu를 설치합니다. 
+
+```bash
+yum -y install dell-system-update
+```
+
+
+
+설치에 문제가 없다면 바이오스 업데이트를 진행합니다. 
+
+```bash
+dsu --inventory 
+```
+
+아니면 약자를 써서 이용합니다. 
+
+```bash
+dsu -i
+```
+
+다음과 같이 버전에 대한 정보가 나옵니다. 
