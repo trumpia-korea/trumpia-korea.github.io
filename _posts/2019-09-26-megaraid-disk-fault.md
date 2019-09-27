@@ -21,6 +21,8 @@ author: kyedon
 
 먼저 pciutils 를 설치하여 어떤 레이드 컨트롤러를 사용하는지 확인한다.
 
+![image](/images/2019-09-26-megaraid-disk-fault/test.jpg)
+
 ```shell
 yum install lshw pciutils
 lspci | grep -i raid
