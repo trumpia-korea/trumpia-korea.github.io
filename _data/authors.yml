@@ -24,3 +24,12 @@ joseph:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:joseph.yoo@mytrum.com"
+
+seolmin:
+  name        : "Seolmin Lee"
+  bio         : "Core level backend Engineer"
+  avatar      : "/assets/images/authors/seolmin.jpg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:seolmin.lee@mytrum.com"
