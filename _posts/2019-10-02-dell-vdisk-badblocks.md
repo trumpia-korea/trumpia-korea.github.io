@@ -1,7 +1,7 @@
 ---
 title: "Dell Vdisk Virtual Disk Bad Blocks 클리어"
 categories:
-  - Manual
+  - Fault
 tags:
   - Infra
   - IDRAC
