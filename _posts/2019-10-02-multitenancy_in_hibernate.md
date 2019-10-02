@@ -59,7 +59,7 @@ multitenancy를 구현하기 위해서는 hibernate에서 제공하는 두가지
 
 
 
-###MultiTenantConnectionProvider
+### MultiTenantConnectionProvider
 
 `MultiTenantConnectionProvider`는 tenant별 connection을 제공하는 역할을 합니다. `getConnection(String tenantIdentifier)` 호출 시 `tenantIdentifier`에 맞는 connection을 반환하는 메서드를 구현하게 되어 있습니다.  각 dataSource를 map 같은 자료구조에 넣어두었다가 `tenantIdentifier` 에 따라 connection을 반환하도록 구현하면 됩니다.
 
