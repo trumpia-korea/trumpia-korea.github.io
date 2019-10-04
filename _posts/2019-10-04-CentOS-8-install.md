@@ -1,6 +1,5 @@
-
 ---
-title: "CentOS 8 특징 및 설치하기 "
+title: " CentOS 8 특징 및 설치하기 "
 categories:
   - Manual
 tags:
@@ -11,7 +10,6 @@ author: sungsoo
 ---
 
 CentOS 8 버전이 신규로 업데이트가 되었다. RHEL 8 버전(2019-05-07)에서 아래 패키지만 제거가 되었고, 동일한 패키지로 되었다고 합니다. 
-
 
 ## 제거 패키지 
  * insights-client
