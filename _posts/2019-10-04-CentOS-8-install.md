@@ -113,6 +113,37 @@ CentOS 8 버전이 신규로 업데이트가 되었다. RHEL 8 버전(2019-05-07
 
 ![centos8_17](/images/2019-10-04-CentOS-8-install/centos_17.png)
 
+### 설치 후 초기 설정
+
+라이센스 동의 절차 승인
+
+![centos8_18](/images/2019-10-04-CentOS-8-install/centos_18.png)
+
+![centos8_19](/images/2019-10-04-CentOS-8-install/centos_19.png)
 
 
+### 완료 후 “Finish Configuration” 클릭합니다.
+
+![centos8_20](/images/2019-10-04-CentOS-8-install/centos_20.png)
+
+
+### CentOS 8 로그인 화면(GUI)
+
+![centos8_21](/images/2019-10-04-CentOS-8-install/centos_21.png)
+
+### 추가 설정 
+
+
+![centos8_22](/images/2019-10-04-CentOS-8-install/centos_22.png)
+
+![centos8_23](/images/2019-10-04-CentOS-8-install/centos_23.png)
+
+![centos8_24](/images/2019-10-04-CentOS-8-install/centos_24.png)
+
+![centos8_25](/images/2019-10-04-CentOS-8-install/centos_25.png)
+
+![centos8_26](/images/2019-10-04-CentOS-8-install/centos_26.png)
+
+
+## 완료!
 
