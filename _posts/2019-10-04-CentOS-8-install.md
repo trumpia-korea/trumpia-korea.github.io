@@ -50,3 +50,15 @@ CentOS 8 버전이 신규로 업데이트가 되었다. RHEL 8 버전(2019-05-07
 
 ![centos8_1](/images/2019-10-04-CentOS-8-install/centos_1.png)
 
+
+### 언어 설정
+
+![centos8_2](/images/2019-10-04-CentOS-8-install/centos_2.png)
+
+### 세부 설정 
+
+![centos8_3](/images/2019-10-04-CentOS-8-install/centos_3.png)
+
+
+
+
