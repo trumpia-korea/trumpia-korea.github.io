@@ -59,6 +59,60 @@ CentOS 8 버전이 신규로 업데이트가 되었다. RHEL 8 버전(2019-05-07
 
 ![centos8_3](/images/2019-10-04-CentOS-8-install/centos_3.png)
 
+### 디스크 설정
+버전 7과 같이 자동으로 파티션으로 설정 할 수 있고, 아니면 원하는 방법으로 파티션을 할 수 있습니다. 
+
+
+![centos8_4](/images/2019-10-04-CentOS-8-install/centos_4.png)
+
+![centos8_5](/images/2019-10-04-CentOS-8-install/centos_5.png)
+
+![centos8_6](/images/2019-10-04-CentOS-8-install/centos_6.png)
+
+![centos8_7](/images/2019-10-04-CentOS-8-install/centos_7.png)
+
+
+### 패키지 선택
+원하는 패키지 선택을 합니다.  
+
+![centos8_8](/images/2019-10-04-CentOS-8-install/centos_8.png)
+
+
+### 시간과 날짜 선택
+
+![centos8_9](/images/2019-10-04-CentOS-8-install/centos_9.png)
+
+
+### 네트워크 선택
+
+![centos8_10](/images/2019-10-04-CentOS-8-install/centos_10.png)
+
+
+### 모든 설정이 완료가 되면 다음과정으로 갈 수 있습니다.
+
+
+![centos8_11](/images/2019-10-04-CentOS-8-install/centos_11.png)
+
+
+### 패스워드 설정
+
+![centos8_12](/images/2019-10-04-CentOS-8-install/centos_12.png)
+
+![centos8_13](/images/2019-10-04-CentOS-8-install/centos_13.png)
+
+![centos8_14](/images/2019-10-04-CentOS-8-install/centos_14.png)
+
+![centos8_15](/images/2019-10-04-CentOS-8-install/centos_15.png)
+
+### 모든 설치가 끝나면 reboot을 합니다. 
+
+![centos8_16](/images/2019-10-04-CentOS-8-install/centos_16.png)
+
+
+### 부팅 시작 
+
+![centos8_17](/images/2019-10-04-CentOS-8-install/centos_17.png)
+
 
 
 
