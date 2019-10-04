@@ -1,11 +1,11 @@
 ---
 title: "Multitenancy in hibernate"
 categories:
-  - knowledge
+  - Knowledge
 tags:
-  - hibernate
-  - multitenancy
-  - java
+  - Hibernate
+  - Multitenancy
+  - Java
 author: seolmin
 ---
 
