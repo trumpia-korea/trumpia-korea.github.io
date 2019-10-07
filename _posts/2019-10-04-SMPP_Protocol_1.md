@@ -1,7 +1,7 @@
 ---
 title: "SMPP Protocol의 이해 - 1"
 categories:
-  - knowledge
+  - Knowledge
 tags:
   - SMPP
   - Protocol
