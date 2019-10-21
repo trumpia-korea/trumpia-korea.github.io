@@ -10,10 +10,10 @@ tags:
 author: kyedon
 ---
 
-Gitlab CI를 통한 지속적인 배포를 위해 도커 레지스트리가 필요하여 (Docker Registry Official Image)[https://hub.docker.com/_/registry]를 사용해보았으나 관리가 쉽지 않다.
+Gitlab CI를 통한 지속적인 배포를 위해 도커 레지스트리가 필요하여 [Docker Registry Official Image](https://hub.docker.com/_/registry)를 사용해보았으나 관리가 쉽지 않다.
 기본적으로 웹어드민 페이지 같은 것을 제공하는 것도 아니고 접근 권한도 체계적으로 관리하기 어렵다.
 
-인터넷에서 좀 더 찾아보니 (Sonatype Nexus)[https://www.sonatype.com/nexus-repository-oss]가 도커 레지스트리를 지원한다.
+인터넷에서 좀 더 찾아보니 [Sonatype Nexus](https://www.sonatype.com/nexus-repository-oss)가 도커 레지스트리를 지원한다.
 별도로 실행중인 도커 레지스트리를 프록시로 연결하여 캐시처럼 사용할수도 있고 호스팅할 수도 있다.
 복잡하게 프록시를 사용하지 않고 넥서스 자체에서 호스팅하여 넥서스3를 구성했다.
 
