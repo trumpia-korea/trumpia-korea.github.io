@@ -319,3 +319,45 @@ Sentinel이 Master 접속하기 위한 패스워드 설정
 sentinel auth-pass redis-master <master password>
 
 
+# 4. Auto failover test
+
+  
+
+마스터에서 redis 서버를 내렸을 때 sentinal 로그에 다음과 같이 기록이 된다.
+
+  
+[그림]
+  
+
+로그에 보면 sdown, odown 이 나오는데 두가지 상태 모두 장애를 인식하는 것이다.
+
+sdown은 Subjectively down으로 주관적인 판단으로 서버한대가 장애가 인식했다는 것이며, odown은 Objectively down으로 객관적인 판단으로 장애를 인식했다는 것인데 failover 정족수 설정에 의해서 판단을 하게 된다.
+  
+
+아래 로그기록은 master가 192.168.3.44(port 6379) 에서 192.168.3.42(port 6379)로 변경이 되었다는 것을 의미한다.
+```bash
++switch-master redis-cluster 192.168.3.44 6379 192.168.3.42 6379
+```
+    
+
+sentinel 한 서버에서 redis master 서버 한대가 주관적 판단으로 서버가 다운이 된것을 확인한것으로 나타낸다.
+```bash
++sdown master redis-cluster 192.168.3.42 6379
+```
+  
+
+객관적 판단을 하기 위해서 정족수 3명중 2명 이상이 판단을 하여 객관적으로 down이 된것을 나타낸다.
+```bash
++odown master redis-cluster 192.168.3.42 6379 #quorum 3/2
+```
+  
+
+아래 master가 192.168.3.42에서 192.168.3.44로 변경이 되었다고 알려준다.
+```bash
++config-update-from sentinel ad9d421b5715f995579c952ce3368516c4c5a391 192.168.3.42 26379 @ redis-cluster 192.168.3.42 6379  
++switch-master redis-cluster 192.168.3.42 6379 192.168.3.44 6379
+```
+  
+이상으로 Redis Sentinel를 설정하고 테스트를 해보았다.
+
+
