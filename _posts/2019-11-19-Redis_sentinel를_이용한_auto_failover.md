@@ -318,8 +318,7 @@ Sentinel이 Master 접속하기 위한 패스워드 설정
 sentinel auth-pass redis-master <master password>
 
 
-# 4. Auto failover test
-
+#4. Auto failover test
   
 
 마스터에서 redis 서버를 내렸을 때 sentinal 로그에 다음과 같이 기록이 된다.
