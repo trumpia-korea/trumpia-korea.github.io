@@ -172,7 +172,7 @@ OK
 
 정상적으로 동작을 하면 redis master 설정은 끝이 났다. 
 
-# Redis slave 설정
+# 2. Redis slave 설정
 redis를 설치는 master와 동일하고 설정 파일에 몇가지만 추가하면 된다. 
 redis.conf를 다음과 같이 설정한다
 
@@ -270,6 +270,7 @@ dir "/var/redis/"
 
 설정을 보면 bind ip만 다르고, 모두 동일한 옵션을 사용한다.
 **bind** : Sentinel이 사용할 IP
+
 ```bash
 bind 192.168.3.42
 ```
@@ -282,6 +283,7 @@ port 26379
 **sentinel monitor  \<cluster name > \<redis master host> \<redis master port> \<quorum>** :
 
 최초 모니터를 할 master redis 서버를 설정 부분이다. \<cluster name>은 이후 설정에서 사용할 내용이고 여기서는 redis-cluster로 지정하였다. \<redis master host>는 master redis의 현재 IP를 넣으면 되고, \<redis master port > master가 사용하는 포트를 기록하면 된다. \<quorum>은 말 그대로 정족수를 의미하며, 여기 2는 2개의 이상의 sentinel에서 확인하면 객관적으로 확인한다는 의미이다.   
+
 ```bash
 sentinel monitor redis-cluster 192.168.3.41 6379 2
 ```
@@ -316,7 +318,7 @@ Sentinel이 Master 접속하기 위한 패스워드 설정
   
 ```bash
 sentinel auth-pass redis-master <master password>
-
+```
 
 #4. Auto failover test
   
@@ -334,6 +336,7 @@ sdown은 Subjectively down으로 주관적인 판단으로 서버한대가 장�
   
 
 아래 로그기록은 master가 192.168.3.44(port 6379) 에서 192.168.3.42(port 6379)로 변경이 되었다는 것을 의미한다.
+
 ```bash
 +switch-master redis-cluster 192.168.3.44 6379 192.168.3.42 6379
 ```
@@ -352,6 +355,7 @@ sentinel 한 서버에서 redis master 서버 한대가 주관적 판단으로 �
   
 
 아래 master가 192.168.3.42에서 192.168.3.44로 변경이 되었다고 알려준다.
+
 ```bash
 +config-update-from sentinel ad9d421b5715f995579c952ce3368516c4c5a391 192.168.3.42 26379 @ redis-cluster 192.168.3.42 6379  
 +switch-master redis-cluster 192.168.3.42 6379 192.168.3.44 6379
