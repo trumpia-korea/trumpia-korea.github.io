@@ -294,6 +294,7 @@ dir "/var/redis/"
 ```
 
 설정을 보면 bind ip만 다르고, 모두 동일한 옵션을 사용한다.
+
 **bind** : Sentinel이 사용할 IP
 
 ```bash
