@@ -326,7 +326,8 @@ sentinel auth-pass redis-master <master password>
 
   
 ![Redis_sentine_2](/images/2019-11-19-Redis_sentinel/redis_failover_test.png)
-  
+
+
 
 로그에 보면 sdown, odown 이 나오는데 두가지 상태 모두 장애를 인식하는 것이다.
 
