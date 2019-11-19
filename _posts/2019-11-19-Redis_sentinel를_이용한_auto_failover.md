@@ -156,7 +156,7 @@ redis 프로세스 확인
 
 ```bash
 [root@redis_master01 ~]# redis-cli -h 192.168.3.41 -p 6379
-192.168.3.41:6379> auth dusruffpeltm
+192.168.3.41:6379> auth <password>
 OK
 192.168.3.41:6379> set mykey test1
 OK
