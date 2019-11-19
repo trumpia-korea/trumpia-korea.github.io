@@ -34,8 +34,7 @@ author: sungsoo kim
 
 ## 구성 다이어그램
 
-
-[그림]
+![Redis_sentine_l](/images/2019-11-19-Redis_sentinel/redis_diagram.png)
 
 **현재 2019.11 시점에서 redis는 5 버전까지 나와 있지만 소스코드가 아닌 yum 설치를 할 계획이라서 yum rpm 버전은 3.2.12-2 으로 설치를 할 계획이다.**
 
@@ -326,7 +325,7 @@ sentinel auth-pass redis-master <master password>
 마스터에서 redis 서버를 내렸을 때 sentinal 로그에 다음과 같이 기록이 된다.
 
   
-[그림]
+![Redis_sentine_2](/images/2019-11-19-Redis_sentinel/redis_failover_test.png)
   
 
 로그에 보면 sdown, odown 이 나오는데 두가지 상태 모두 장애를 인식하는 것이다.
