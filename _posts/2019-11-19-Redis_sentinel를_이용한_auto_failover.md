@@ -7,7 +7,7 @@ tags:
   - DB
   - Redis 
   - Sentinel
-author: sskim
+author: sungsoo kim
 ---
 
 ***
