@@ -223,6 +223,31 @@ slave에서 값이 변경이 되었는지 확인을 한다. “test55”값을 �
 "test55"
 192.168.3.43:6379>
 ```
+# 3. Sentinel 설정
+Sentinel의 목적으로 Redis Master, Slave를 감사하는 목적으로 만들어졌으며, PING으로 확인하는데, sentinelPingReplyCallback 함수로 응답시간을 기록한다. Sentinel은 최소 3대 이상 홀수로 구성을 해야한다. Sentinel 서버가 과반수 이상이 Master가 Down이 되었다고 판단이 될때 Master를 다른 곳 Slave로 이전을 한다.
+Sentinel의 기본 구성은 Redis 서버 마다 Sentinel을 설치하는 것 이지만 최소3개,홀수 구성을 염두하고 아키텍처를 만들어야 한다.
+여기서는 4대의 redis 서버가 존재를 하기 때문에 redis_slave01~03까지만 Sentinel를 설치하였다.
+redis를 설치하면 기본적으로 sentinel를 설정할 수 있다. 아래와 같이 기존 설정값을 확인이 가능하다.
+```bash
+cat /etc/redis-sentinel.conf | grep -v "#" | grep -v '^$'
+```
+  
+아래와 같이 나온것을 가지고 설정을 진행한다.
+```bash
+[root@redis_slave01 etc]# cat redis-sentinel.conf | grep -v "#" | grep -v '^$'  
+port 26379  
+dir /tmp  
+sentinel monitor mymaster 127.0.0.1 6379 2  
+sentinel down-after-milliseconds mymaster 30000  
+sentinel parallel-syncs mymaster 1  
+sentinel failover-timeout mymaster 180000  
+logfile /var/log/redis/sentinel.log
+```
+  
+
+port의 경우 각각 sentinel 마다 변경을 하지만, 우리는 관리상 하나의 포트로 통일하기로 하였다. 각각 포트를 달리하여도 무방한다.
+
+
 
 ## sentinel.conf 설정
 
@@ -320,7 +345,7 @@ Sentinel이 Master 접속하기 위한 패스워드 설정
 sentinel auth-pass redis-master <master password>
 ```
 
-#4. Auto failover test
+# 4. Auto failover test
   
 
 마스터에서 redis 서버를 내렸을 때 sentinal 로그에 다음과 같이 기록이 된다.
