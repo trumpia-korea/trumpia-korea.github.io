@@ -321,7 +321,7 @@ sentinel monitor redis-cluster 192.168.3.41 6379 2
 sentinel down-after-milliseconds redis-cluster 5000
 ```
   
-**sentinel parallel-syncs \<cluster name > <Parameter >** :
+**sentinel parallel-syncs \<cluster name > \<Parameter >** :
 
 새로운 마스터 승격후에 몇개의 슬레이브가 싱크해야 하는지 설정한다. 값이 1이면 slave는 한대씩 Master와 동기화를 진행한다. 값이 클수록 Master에 부하가 가중이 된다.
  
