@@ -224,3 +224,98 @@ slave에서 값이 변경이 되었는지 확인을 한다. “test55”값을 �
 "test55"
 192.168.3.43:6379>
 ```
+
+## sentinel.conf 설정
+
+redis-slave01 의 /etc/redis/sentinel.conf
+```bash
+bind 192.168.3.42  
+port 26379  
+sentinel monitor redis-cluster 192.168.3.41 6379 2  
+sentinel down-after-milliseconds redis-cluster 5000  
+sentinel parallel-syncs redis-cluster 1  
+sentinel failover-timeout redis-cluster 10000
+sentinel auth-pass redis-master  <master password>
+daemonize yes  
+pidfile "/var/run/redis/sentinel.pid"  
+dir "/var/redis/"
+```
+
+redis-slave02 의 /etc/redis/sentinel.conf
+```bash
+bind 192.168.3.43  
+port 26379  
+sentinel monitor redis-cluster 192.168.3.41 6379 2  
+sentinel down-after-milliseconds redis-cluster 5000  
+sentinel parallel-syncs redis-cluster 1  
+sentinel failover-timeout redis-cluster 10000
+sentinel auth-pass redis-master  <master password>
+daemonize yes  
+pidfile "/var/run/redis/sentinel.pid"  
+dir "/var/redis/"
+```
+ 
+redis-slave03 의 /etc/redis/sentinel.conf
+```bash
+bind 192.168.3.44  
+port 26379  
+sentinel monitor redis-cluster 192.168.3.41 6379 2  
+sentinel down-after-milliseconds redis-cluster 5000  
+sentinel parallel-syncs redis-cluster 1  
+sentinel failover-timeout redis-cluster 10000
+sentinel auth-pass redis-master <master password>
+daemonize yes  
+pidfile "/var/run/redis/sentinel.pid"  
+dir "/var/redis/"
+```
+
+설정을 보면 bind ip만 다르고, 모두 동일한 옵션을 사용한다.
+**bind** : Sentinel이 사용할 IP
+```bash
+bind 192.168.3.42
+```
+**port** : Sentinel이 실행 될 포트이며 기본은 26379이고 각각 Sentinel마다 다르게 설정을 해도 된다. 사용할 포트에 대한 방화벽 설정도 같이 이루어져야 한다.
+
+```bash 
+port 26379
+```
+  
+**sentinel monitor  \<cluster name > \<redis master host> \<redis master port> \<quorum>** :
+
+최초 모니터를 할 master redis 서버를 설정 부분이다. \<cluster name>은 이후 설정에서 사용할 내용이고 여기서는 redis-cluster로 지정하였다. \<redis master host>는 master redis의 현재 IP를 넣으면 되고, \<redis master port > master가 사용하는 포트를 기록하면 된다. \<quorum>은 말 그대로 정족수를 의미하며, 여기 2는 2개의 이상의 sentinel에서 확인하면 객관적으로 확인한다는 의미이다.   
+```bash
+sentinel monitor redis-cluster 192.168.3.41 6379 2
+```
+
+**sentinel  down-after-milliseconds \<cluster name > \<milliseconds>** :
+
+다운으로 인식하는 최소 시간을 설정이며, sentinelCheckSubjectivelyDown에서 사용하는 마스터의 ‘down_after_period’ 이다. 5000이면 5초를 뜻한다.
+```bash
+sentinel down-after-milliseconds redis-cluster 5000
+```
+  
+**sentinel parallel-syncs \<cluster name > <Parameter >** :
+
+새로운 마스터 승격후에 몇개의 슬레이브가 싱크해야 하는지 설정한다. 값이 1이면 slave는 한대씩 Master와 동기화를 진행한다. 값이 클수록 Master에 부하가 가중이 된다.
+ 
+```bash
+sentinel parallel-syncs redis-cluster 1
+```
+ 
+**sentinel failover-timeout  \<cluster name >  \<milliseconds >** :
+
+페일오버 작업 시간의 시간 설정  
+  
+```bash
+sentinel failover-timeout redis-cluster 10000
+```
+  
+
+**sentinel auth-pass  \<cluster name > \<master password>** :
+
+Sentinel이 Master 접속하기 위한 패스워드 설정
+  
+```bash
+sentinel auth-pass redis-master <master password>
+
+
