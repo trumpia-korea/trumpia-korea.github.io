@@ -98,7 +98,7 @@ redis-stat 192.168.3.41:6379 1 10 -a \<password> --verbose
 redis-stat 192.168.3.45:6380 192.168.3.46:6381 192.168.3.47:6382 1 10
 ```
   
-  
+![Redis_state_4](/images/2019-11-21-Redis_Stats/redis_stat4.png)  
 
 ### csv파일 형태로 출력하기
 ```bash
@@ -142,12 +142,12 @@ redis-stat 192.168.3.45:6380 192.168.3.46:6381 192.168.3.47:6382 5 --daemon --se
 
 7000포트에 대한 방화벽 설정을 끝나고 웹 페이지로 연결
 
-![Redis_state_4](/images/2019-11-21-Redis_Stats/redis_stat4.png)
+![Redis_state_4](/images/2019-11-21-Redis_Stats/redis_stat5.png)
 
 
 각 서버 별로 확인도 가능
 
-![Redis_state_5](/images/2019-11-21-Redis_Stats/redis_stat5.png)
+![Redis_state_5](/images/2019-11-21-Redis_Stats/redis_stat6.png)
 
 
 ## 프로그램 종료
