@@ -76,8 +76,9 @@ redis-stat 192.168.3.41:6379 1 -a <password>
   
 
 ### 1초 간격으로 10회 출력
+
 ```bash
-redis-stat 192.168.3.41:6379 1 10 -a \<password>
+redis-stat 192.168.3.41:6379 1 10 -a <password>
  ```
 
 ![Redis_state_2](/images/2019-11-21-Redis_Stats/Inkedredis_stat2.jpg)
@@ -85,14 +86,15 @@ redis-stat 192.168.3.41:6379 1 10 -a \<password>
   
   
 
-### --verbose 옵션으로 추가 정보 보여주기
+### verbose 옵션으로 추가 정보 보여주기
 
-redis-stat 192.168.3.41:6379 1 10 -a \<password> --verbose
+```bash
+redis-stat 192.168.3.41:6379 1 10 -a <password> --verbose
+```
 
 ![Redis_state_3](/images/2019-11-21-Redis_Stats/Inkedredis_stat3.jpg)
 
 ### 여러 대의 서버 동시에 보여주기
-
   
 ```bash
 redis-stat 192.168.3.45:6380 192.168.3.46:6381 192.168.3.47:6382 1 10
@@ -101,9 +103,11 @@ redis-stat 192.168.3.45:6380 192.168.3.46:6381 192.168.3.47:6382 1 10
 ![Redis_state_4](/images/2019-11-21-Redis_Stats/redis_stat4.png)  
 
 ### csv파일 형태로 출력하기
+
 ```bash
 redis-stat 192.168.3.45:6380 1 10 --csv=/tmp/redis-stat-log.csv
 ```
+
 로그기록을 따로 하지 않기 때문에 csv로 같이 기록하는 것을 권장한다.
 
 ```bash
