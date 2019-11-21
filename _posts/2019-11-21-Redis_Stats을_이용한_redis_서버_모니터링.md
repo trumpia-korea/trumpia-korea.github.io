@@ -157,4 +157,4 @@ redis-stat 192.168.3.45:6380 192.168.3.46:6381 192.168.3.47:6382 5 --daemon --se
 ## 프로그램 종료
 ```bash
 killall -9 redis-stat-daemon
-
+```
