@@ -71,7 +71,7 @@ redis-stat 192.168.3.41:6379 1 -a <password>
 192.1683.41에 있는 포트 6379의 redis 서버를 연결하며 패스워드를 통해서 접근을 한다. 1초 마다 정보를 출력한다.
 
   
-![Redis_state_l](/images/2019-11-21-Redis_Stats/redis_stat1.jpg)
+![Redis_state_l](/images/2019-11-21-Redis_Stats/Inkedredis_stat1.jpg)
 
   
 
@@ -80,7 +80,7 @@ redis-stat 192.168.3.41:6379 1 -a <password>
 redis-stat 192.168.3.41:6379 1 10 -a \<password>
  ```
 
-![Redis_state_2](/images/2019-11-21-Redis_Stats/redis_stat2.jpg)
+![Redis_state_2](/images/2019-11-21-Redis_Stats/Inkedredis_stat2.jpg)
 
   
   
@@ -89,7 +89,7 @@ redis-stat 192.168.3.41:6379 1 10 -a \<password>
 
 redis-stat 192.168.3.41:6379 1 10 -a \<password> --verbose
 
-![Redis_state_3](/images/2019-11-21-Redis_Stats/redis_stat3.jpg)
+![Redis_state_3](/images/2019-11-21-Redis_Stats/Inkedredis_stat3.jpg)
 
 ### 여러 대의 서버 동시에 보여주기
 
