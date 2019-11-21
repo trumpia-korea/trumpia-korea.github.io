@@ -54,11 +54,12 @@ redis-stat [HOST[:PORT] ...] [INTERVAL [COUNT]]
 --help Show this message
 ```
 -a : redis 연결시 requirepass password가 필요할때 쓰는 옵션
--v : 세부적인 정보를 출력해 준다.
 
---csv : csv 파일로 저장한다.
+-v : 세부적인 정보를 출력
+
+--csv : csv 파일로 저장 
 --es : 엘라스틱서치로 보내는 옵션
---server : 콘솔이 아닌 웹으로 정보를 확인 port를 지정하지 않으면 기본 63790 포트를 사용한다.
+--server : 콘솔이 아닌 웹으로 정보를 확인 port를 지정하지 않으면 기본 63790 포트를 사용 
 --daemon : 백그라운드로 프로세스 실행
 
 
