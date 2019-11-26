@@ -6,7 +6,7 @@ tags:
   - Infra
   - DB
   - Redis 
-  - monitoring
+  - Monitoring
 author: sungsoo
 ---
 

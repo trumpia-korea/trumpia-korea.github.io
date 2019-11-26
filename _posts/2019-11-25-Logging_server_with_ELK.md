@@ -3,14 +3,13 @@ title: "Logging server with ELK"
 categories:
   - knowledge
 tags:
-  - elk
-  - log
+  - ELK
+  - Log
 author: seolmin
 ---
 
 
 
-# Logging server with ELK
 
 서비스의 가동률을 높이기 위해 서버를 다중화하는 경우 로그를 각 서버의 파일에 기록하면 디버깅이나 로그 관리에 피곤함을 느끼기 마련입니다. 디버깅을 위해 각 서버에 접근하여야 하거나 로그 관리 정책 변경 시 각각의 서버에 모두 적용을 해야 하기 때문입니다. 
 
