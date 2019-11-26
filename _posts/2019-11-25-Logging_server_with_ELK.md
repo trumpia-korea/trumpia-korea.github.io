@@ -27,6 +27,7 @@ author: seolmin
   * **Java 1.8**
   * **Spring boot framework 2.0.5**
 * **Server**
+  * **Java 1.8**
   * **Elastic search 7.4.2** : 로그  적재 및 분석
   * **Logstash 7.4.2**: 로그 수집
   * **Kibana 7.4.2**:  Visualization 
@@ -64,7 +65,7 @@ Rabbit MQ는 기본적으로 `5672`, `15672`, `35197`, `4369` 포트를 사용�
 
 **3. Enable Management plugin**
 
-좀 더 편하게 설정하기 위해 Management plugin을 활성화 합니다. 다음 명령어를 사용하면 plugin을 활성화 할 수 있습니다
+좀 더 편하게 관리하기 위해 Management plugin을 활성화 합니다. 다음 명령어를 사용하면 plugin을 활성화 할 수 있습니다
 
 ```
 rabbitmq-plugins enable rabbitmq_management
@@ -120,7 +121,7 @@ test라는 이름의 queue를 생성합니다.
 
 ## Client config
 
-파일 로그도 유지하되 로그를 Elasticsearch에도 적재하는 경우에는 파일 로그를 기록하고 filebeat이나 Logstash를 이용해 로그를 읽어 Queue로 발행하고 ELK 서버의 Logstash가 읽어가기도 합니다. 하지만 이번에는 Client 프로세스에서 바로 RabbitMQ로 발행하도록 하여 ELK 서버에만 적재하도록 할 것입니다.
+파일 로그도 유지하되 Elasticsearch에도 적재하는 경우에는 파일 로그를 기록하고 filebeat이나 Logstash를 이용해 로그를 읽어 Queue로 발행하고 ELK 서버의 Logstash가 읽어가기도 합니다. 하지만 이번에는 Client 프로세스에서 바로 RabbitMQ로 발행하도록 하여 ELK 서버에만 적재하도록 할 것입니다.
 
 
 
@@ -128,9 +129,149 @@ test라는 이름의 queue를 생성합니다.
 
 
 
-**pom.xml**
+**1. pom.xml**
+
+다음과 같은 dependency를 추가합니다.
+
+```xml
+<dependencies>
+     <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-amqp</artifactId>
+     </dependency>
+     <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-web</artifactId>
+     </dependency>
+     <dependency>
+         <groupId>net.logstash.logback</groupId>
+         <artifactId>logstash-logback-encoder</artifactId>
+         <version>6.2</version>
+     </dependency>
+ </dependencies>
+```
 
 
+
+**2. logback-amqp.xml**
+
+`spring-boot-starter-amqp`에는 `org.springframework.amqp.rabbit.logback.AmqpAppender`가 포함되어 있습니다. 이를 이용해서 Appender를 따로 구현하지 않고 설정할 수 있습니다. 저는 대부분의 변수를 spring property에서 가져다 쓸 것입니다.  앞서 Rabbit MQ에 설정한 값들을 사용하면 됩니다.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+    <springProperty name="APPLICATION_ID" scope="context" source="trumpia.logging.amqp.application-id"/>
+    <springProperty name="ADDRESSES" scope="context" source="trumpia.logging.amqp.addresses"/>
+    <springProperty name="USERNAME" scope="context" source="trumpia.logging.amqp.username"/>
+    <springProperty name="PASSWORD" scope="context" source="trumpia.logging.amqp.password"/>
+    <!-- 중략 -->
+
+    <appender name="TEST_INFO" class="org.springframework.amqp.rabbit.logback.AmqpAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+
+        <applicationId>${APPLICATION_ID}</applicationId>
+        <addresses>${ADDRESSES}</addresses>
+        <username>${USERNAME}</username>
+        <password>${PASSWORD}</password>
+        <virtualHost>${VIRTUAL_HOST}</virtualHost>
+        <exchangeName>${EXCHANGE_NAME}</exchangeName>
+        <exchangeType>${EXCHANGE_TYPE}</exchangeType>
+        <declareExchange>${DECLARE_EXCHANGE}</declareExchange>
+        <routingKeyPattern>${ROUTING_KEY_PATTERN}</routingKeyPattern>
+        <charset>${CHARSET}</charset>
+        <durable>${DURABLE}</durable>
+        <deliveryMode>${DELIVERY_MODE}</deliveryMode>
+        <includeCallerData>${INCLUDE_CALLER_DATA}</includeCallerData>
+
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <IncludeContext>false</IncludeContext>
+        </encoder>
+    </appender>
+
+    <root>
+        <appender-ref ref="TEST_INFO"/>
+    </root>
+</configuration>
+```
+
+`encoder`설정에 `IncludeContext`필드를 `true`로 설정한다면 위에 선언한 spring property로 모두 포함됩니다. 비밀번호 같은 정보를 queue에 발행하는 것은 좋지 못하기에 false로 설정합니다.
+
+
+
+**3. application.yml**
+
+앞서 설정한 logback 설정에 사용될 값을 spring property로 선언합니다.
+
+```yml
+logging:
+  config: classpath:logback-amqp.xml
+  level:
+    root: debug
+
+trumpia:
+  logging:
+    amqp:
+      application-id: logging-test
+      addresses: localhost:5672
+      username: admin
+      password: trumpia123
+      virtual-host: logs
+      sender-pool-size: 50
+      # 중략
+```
+
+
+
+**4. Controller**
+
+테스트를 위해 로그를 기록하는 컨트롤러를 하나 작성해 두겠습니다.
+
+```java
+@RestController
+@RequestMapping(value = "/hello")
+public class HelloController {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
+    @GetMapping
+    public String hello() {
+
+        logger.info("Hello");
+        return "Hello";
+    }
+}
+```
+
+
+
+**5. Test**
+
+로그가 잘 발행되는지 확인해보겠습니다.
+
+다음과 같은 로그가 기록되었을 때, 
+
+```
+[2019-11-22 16:03:13,791][INFO ][smlee][http-nio-8080-exec-3][c.t.s.l.controller.HelloController] - Hello
+```
+
+Queue에 다음 메시지가 발행되었습니다.
+
+```json
+{ 
+   "@timestamp":"2019-11-22T16:03:13.791+09:00",
+   "@version":"1",
+   "message":"Hello",
+   "logger_name":"com.trumpia.smlee.logging.controller.HelloController",
+   "thread_name":"http-nio-8080-exec-3",
+   "level":"INFO",
+   "level_value":20000
+}
+```
+
+만약 추가적인 필드를 같이 발행하고자 한다면 encoder를 설정하면 됩니다. 오늘은 기본 설정으로만 확인하겠습니다.
 
 
 
@@ -182,5 +323,46 @@ output {
 
 
 
-**Kibana 설정**
+이제 Logstash를 재시작하면 Queue에서 로그를 가져와 Elasticsearch에 적재할 수 있습니다.
 
+
+
+**4. Kibana 설정**
+
+이제 로그를 Web UI를 통해 확인하기 위해 Kibana를 설정합니다. 
+
+
+
+Kibana는 `5601` 포트를 사용합니다.
+
+```shell
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 5601 -j ACCEPT
+```
+
+이제 ELK 서버의 5601 포트로 접근하면 Kibana에 접속할 수 있습니다.
+
+
+
+`Discover` 메뉴에서 indices를 추가합니다. Default로 생성되는 인덱스 이름인 `logstash-*` 를 사용합니다. 실제로 운영할 때는 Logstash 설정에서 각 로그별 인덱스 이름을 설정해 주어야 합니다.
+
+![add_incidies](images/2019-11-25-Logging_server_with_ELK/add_incidies.png)
+
+
+
+다음은 `Logs` 메뉴의 `Settings` 항목으로 이동합니다. 다음처럼 방금 생성한 indices를 `Log indices` 항목에 설정해 줍니다.
+
+![setting_logs_incides](images/2019-11-25-Logging_server_with_ELK/setting_logs_incides.png)
+
+
+
+저는 시간, Log level, Thread name, Class name, message 순으로 화면에 출력하고 싶습니다. `Log Columns` 항목을 다음처럼 설정하면 됩니다.
+
+![set_log_cloumn](images/2019-11-25-Logging_server_with_ELK/set_log_cloumn.png)
+
+
+
+자 이제 `Stream` 항목으로 이동하면 다음처럼 스트리밍 되고 있는 로그를 확인할 수 있습니다.
+
+![result](images/2019-11-25-Logging_server_with_ELK/result.png)
+
+`Start streaming` 버튼을 활성화시키면 마치 `tail`을 사용한 것처럼 스트리밍 되는 것을 보실 수 있습니다.
