@@ -1,11 +1,10 @@
 ---
-title: "Multitenancy in hibernate"
+title: "Logging server with ELK"
 categories:
   - knowledge
 tags:
-  - hibernate
-  - multitenancy
-  - java
+  - elk
+  - log
 author: seolmin
 ---
 
@@ -34,7 +33,7 @@ author: seolmin
   * **Erlang 21.3.8.11**
   * **RabbitMQ 3.8.1**: 로그 전송을 위한 Queue
 
-![structure](images/2019-11-25-Logging_server_with_ELK/structure.png)
+![structure](/images/2019-11-25-Logging_server_with_ELK/structure.png)
 
 각 Client는 Rabbit MQ로 로그를 발행하고, Logstash는 Rabbit MQ로부터 로그를 소비하여 Elasticsearch에 적재합니다. 이렇게 적재된 로그를 Kibana는 읽어 UI에 뿌려줍니다.
 
@@ -91,7 +90,7 @@ rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
 
 logs라는 이름의 로그를 위한 virtual host를 생성합니다. 서버의 15672 포트로 접근하여 web ui를 통해 설정이 가능합니다.
 
-![add_virtual_host](images/2019-11-25-Logging_server_with_ELK/add_virtual_host.png)
+![add_virtual_host](/images/2019-11-25-Logging_server_with_ELK/add_virtual_host.png)
 
 
 
@@ -99,7 +98,7 @@ logs라는 이름의 로그를 위한 virtual host를 생성합니다. 서버의
 
 exchange는 logs라는 이름의 topic type으로 생성하도록 하겠습니다. 각 프로세스 혹은 모듈별로 큐를 구분하고, 각 큐에 맞는 Routing key로 발행할 것입니다.
 
-![add_exchange](images/2019-11-25-Logging_server_with_ELK/add_exchange.png)
+![add_exchange](/images/2019-11-25-Logging_server_with_ELK/add_exchange.png)
 
 
 
@@ -107,7 +106,7 @@ exchange는 logs라는 이름의 topic type으로 생성하도록 하겠습니�
 
 test라는 이름의 queue를 생성합니다.
 
-![add_queue](images/2019-11-25-Logging_server_with_ELK/add_queue.png)
+![add_queue](/images/2019-11-25-Logging_server_with_ELK/add_queue.png)
 
 
 
@@ -115,7 +114,7 @@ test라는 이름의 queue를 생성합니다.
 
 앞서 생성한 exchange와 queue를 binding 해줍니다. 여기에 사용된 Routing key를 후에 Client에서 로그를 발행할 때 사용할 것입니다.
 
-![binding](images/2019-11-25-Logging_server_with_ELK/binding.png)
+![binding](/images/2019-11-25-Logging_server_with_ELK/binding.png)
 
 
 
@@ -345,24 +344,24 @@ Kibana는 `5601` 포트를 사용합니다.
 
 `Discover` 메뉴에서 indices를 추가합니다. Default로 생성되는 인덱스 이름인 `logstash-*` 를 사용합니다. 실제로 운영할 때는 Logstash 설정에서 각 로그별 인덱스 이름을 설정해 주어야 합니다.
 
-![add_incidies](images/2019-11-25-Logging_server_with_ELK/add_incidies.png)
+![add_incidies](/images/2019-11-25-Logging_server_with_ELK/add_incidies.png)
 
 
 
 다음은 `Logs` 메뉴의 `Settings` 항목으로 이동합니다. 다음처럼 방금 생성한 indices를 `Log indices` 항목에 설정해 줍니다.
 
-![setting_logs_incides](images/2019-11-25-Logging_server_with_ELK/setting_logs_incides.png)
+![setting_logs_incides](/images/2019-11-25-Logging_server_with_ELK/setting_logs_incides.png)
 
 
 
 저는 시간, Log level, Thread name, Class name, message 순으로 화면에 출력하고 싶습니다. `Log Columns` 항목을 다음처럼 설정하면 됩니다.
 
-![set_log_cloumn](images/2019-11-25-Logging_server_with_ELK/set_log_cloumn.png)
+![set_log_cloumn](/images/2019-11-25-Logging_server_with_ELK/set_log_cloumn.png)
 
 
 
 자 이제 `Stream` 항목으로 이동하면 다음처럼 스트리밍 되고 있는 로그를 확인할 수 있습니다.
 
-![result](images/2019-11-25-Logging_server_with_ELK/result.png)
+![result](/images/2019-11-25-Logging_server_with_ELK/result.png)
 
 `Start streaming` 버튼을 활성화시키면 마치 `tail`을 사용한 것처럼 스트리밍 되는 것을 보실 수 있습니다.
