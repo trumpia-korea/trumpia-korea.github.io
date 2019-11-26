@@ -1,11 +1,10 @@
 ---
-title: "Multitenancy in hibernate"
+title: "Logging server with ELK"
 categories:
   - knowledge
 tags:
-  - hibernate
-  - multitenancy
-  - java
+  - elk
+  - log
 author: seolmin
 ---
 
