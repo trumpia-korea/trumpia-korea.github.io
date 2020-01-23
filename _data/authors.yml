@@ -33,3 +33,12 @@ seolmin:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:seolmin.lee@mytrum.com"
+
+inpyo:
+  name        : "Inpyo Jeon"
+  bio         : "Core level backend Engineer"
+  avatar      : "/assets/images/authors/inpyo.jpg"
+  links:
+  - label: "Email"
+    icon: "fas fa-fw fa-envelope-square"
+    url: "mailto:inpyo.jeon@mytrum.com"
